@@ -6,14 +6,14 @@ from os import path
 dev_hosts = ['xhh-laptop', 'xhh-desktop', 'xhh-ubuntu']
 host_name = socket.gethostname()
 if host_name in dev_hosts:
-    DEBUG = True
+	DEBUG = True
 else:
-    DEBUG = False
+	DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Xu Hui Hui', 'xhh@xhh.me'),
-)
+		('Xu Hui Hui', 'xhh@xhh.me'),
+		)
 
 MANAGERS = ADMINS
 
@@ -25,15 +25,15 @@ else:
 	db_file = 'sqlite/prod.db'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': path.join(base_dir, db_file),                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+		'default': {
+			'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+			'NAME': path.join(base_dir, db_file),                      # Or path to database file if using sqlite3.
+			'USER': '',                      # Not used with sqlite3.
+			'PASSWORD': '',                  # Not used with sqlite3.
+			'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+			'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+			}
+		}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -77,34 +77,34 @@ SECRET_KEY = '8g*07=ih$m$r7cmu8n%*hhlx-!lob+s1*^^_n#2l!$-rhv$1za'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+		'django.template.loaders.filesystem.Loader',
+		'django.template.loaders.app_directories.Loader',
+		#     'django.template.loaders.eggs.Loader',
+		)
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-)
+		'django.middleware.common.CommonMiddleware',
+		'django.contrib.sessions.middleware.SessionMiddleware',
+		'django.middleware.csrf.CsrfViewMiddleware',
+		'django.contrib.auth.middleware.AuthenticationMiddleware',
+		'django.contrib.messages.middleware.MessageMiddleware',
+		)
 
 ROOT_URLCONF = 'dotpy.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    path.join(base_dir, 'templates').replace('\\', '/'),
-)
+		# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+		# Always use forward slashes, even on Windows.
+		# Don't forget to use absolute paths, not relative paths.
+		path.join(base_dir, 'templates').replace('\\', '/'),
+		)
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-)
+		'django.contrib.auth',
+		'django.contrib.contenttypes',
+		'django.contrib.sessions',
+		'django.contrib.sites',
+		'django.contrib.messages',
+		# Uncomment the next line to enable the admin:
+		# 'django.contrib.admin',
+		)

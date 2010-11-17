@@ -1,11 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/xml+xhtml; charset=UTF-8">
-        <title>Python第一次 - 非常牛B非常娴熟的职业挨踢民工</title>
-        <link rel="stylesheet" type="text/css" href="/media/css/main.css"/>
-    </head>
-    <body>
+{% extends '_base.html' %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/media/css/main.css"/>{% endblock %}
+{% block body %}
     	<div id="wrapper">
     		<div id="header" class="clr">
     			<div id="logo">
@@ -75,6 +70,4 @@
     			@ 2010 All rights reservd.
     		</div>
     	</div>
-    </body>
-</html>
-    
+{% endblock %}

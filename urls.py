@@ -9,8 +9,9 @@ from dotpy import settings
 urlpatterns = patterns('',
     # Example:
     # (r'^dotpy/', include('dotpy.foo.urls')),
-    (r'^$', views.index),
-    (r'^article$', views.article),
+    (r'^$', views.notify),
+    (r'^_$', views.index),
+    (r'^_article$', views.article),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
