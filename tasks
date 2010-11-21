@@ -1,0 +1,3 @@
+Run the Django project with a PID file, and use Git post-receive to do auto-deploy | id:5ffaeb252cf963a9ddcf003da8da0cb5fc0da5b6
+Use MySQL/PostgreSQL for production. Do NOT put DB configurations into Git control | id:9a5bc0f2f70b7e13b7c10f488cf717318eecf78b
+Create favicon for dotpy.org                                                       | id:e58d766dbf526bc3a227590f856744aee14abe44

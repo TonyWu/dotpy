@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^dotpy/', include('dotpy.foo.urls')),
     (r'^$', views.notify),
+    (r'^learn/', include('dotpy.lessons.urls')),
     (r'^_$', views.index),
     (r'^_article$', views.article),
 
