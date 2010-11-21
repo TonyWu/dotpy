@@ -6,11 +6,11 @@ def home(request):
 def learn_python(request, title_slug):
   if not title_slug:
     return render_to_response('python/home.htm')
-  else # TODO show an article
+  else: # TODO show an article
     return render_to_response('python/home.htm')
 
 def learn_django(request, title_slug):
   if not title_slug:
     return render_to_response('django/home.htm')
-  else # TODO show an article
+  else: # TODO show an article
     return render_to_response('django/home.htm')

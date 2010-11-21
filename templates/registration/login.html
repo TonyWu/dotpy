@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+{% block title %}登录 - {{ block.super }}{% endblock %}
+{% block body %}
+  {% if form.errors %}
+    <p style="color:red;">Invalid username or password</p>
+  {% endif %}
+
+  <form action="" method="post">{% csrf_token %}
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{% if next %}{{ next|escape }}{% else %}/{% endif %}" />
+  </form>
+{% endblock %}

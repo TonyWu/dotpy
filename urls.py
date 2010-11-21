@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.contrib.auth.views import login, logout
 from dotpy import views
 from dotpy import settings
 
@@ -11,6 +12,8 @@ urlpatterns = patterns('',
     # (r'^dotpy/', include('dotpy.foo.urls')),
     (r'^$', views.notify),
     (r'^learn/', include('dotpy.lessons.urls')),
+    (r'^accounts/login/$', login),
+    (r'^accounts/logout/$', logout),
     (r'^_$', views.index),
     (r'^_article$', views.article),
 
