@@ -1,0 +1,54 @@
+{% extends 'base.htm' %}
+{% block title %}评论 - {{ lesson.subject }} - dotPy{% endblock %}
+{% block main %}
+<div>
+    <div class="box comments">
+        <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a>
+              的{{ comments|length }}条评论...</h2>
+        <a href="#write_comment">我也来写个</a>
+        {% for comment in comments %}
+        <div class="box comment">
+            <div class="comment_info">
+                <span class="comment_author">{{ comment.author }}</span> 写于
+                <span class="comment_time">{{ comment.created_on|date:"Y-m-d H:i" }}</span>
+                <a id="{{ comment.id }}" href="javascript:void(0);">回复</a>
+            </div>
+            <div class="comment_content">
+                {{ comment.content }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="box">
+        <h2>写评论</h2>
+        <a name="write_comment"/>
+        <form action="" method="post" id="commentform" name="commentform">
+            <textarea tabindex="1" name="comment" id="comment" cols="80" rows="10">
+            </textarea>
+            <div style="float: right; margin: 0 30px;">
+            <label for="author">
+                <small>
+                      怎么称呼&nbsp;<span style="color:#f00; " title="必填">*</span>
+                </small>
+            </label>
+            <input tabindex="2" name="author" type="text" class="input_text" id="author" value="" size="22" maxlength="10" title="必填">
+            <label for="email">
+                <small>
+                Email&nbsp;<span style="color:#f00; " title="必填，不会被公开">*</span>
+                </small>
+            </label>
+            <input tabindex="3" type="text" name="email" class="input_text" id="email" value="" size="22" title="必填，不会被公开">
+            <label for="url">
+                <small>
+                      网站&nbsp;
+                </small>
+            </label>
+            <input tabindex="4" type="text" class="input_text" name="url" id="url" value="" size="22" title="只欢迎个人网站、网志">
+            <br />
+            <br />
+            <input tabindex="5" type="submit" id="submitit" value="好了">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

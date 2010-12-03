@@ -1,0 +1,18 @@
+{% extends 'base.htm' %}
+{% block title %}{{ lesson.subject }} - dotPy{% endblock %}
+{% block main %}
+<div>
+    <div class="box">
+        <h1 class="article_title">{{ lesson.subject }}</h1>
+        <div class="article_info">
+             {{ lesson.summary }}
+        </div>
+        <div class="article_content">
+            {{ lesson.content }}
+        </div>
+    </div>
+    <div class="box">
+        <a href="{% url lessons.views.show_comments lesson.slug %}">{{ comments_num }}条评论</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 *.pyc
-sqlite/*.db
+sqlite/prod.db
 Session.vim
 .project
 .pydevproject
