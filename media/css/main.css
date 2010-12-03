@@ -40,6 +40,7 @@ textarea { border: solid 1px #ccc; padding: 3px; }
 .notice { border: solid 1px #ccc; background: #f6f6f6; padding: 0.5em; }
 .comments {}
 .comment { margin-top: 10px; }
+.comment-summary { text-align: right; }
 .comment_info { border-bottom: dashed 1px #ccd; line-height: 2em; margin-bottom: 0.5em; }
 .comment_author { font-weight: bold; }
 .comment_time { color: #666; }

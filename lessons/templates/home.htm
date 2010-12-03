@@ -2,12 +2,12 @@
 {% block main %}
 <div>
   {% for lesson in lessons %}
-  <div class="box">
+    <div class="box">
     <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a></h2>
     <div class="notice">
         {{ lesson.summary }}
     </div>
-	</div>
+    </div>
 	{% endfor %}
 </div>
 {% endblock %}

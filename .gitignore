@@ -3,3 +3,4 @@ sqlite/prod.db
 Session.vim
 .project
 .pydevproject
+lessons/templates/cache

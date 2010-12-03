@@ -8,10 +8,10 @@
              {{ lesson.summary }}
         </div>
         <div class="article_content">
-            {{ lesson.content }}
+            {% include markdown_template %}
         </div>
     </div>
-    <div class="box">
+    <div class="box comment-summary">
         <a href="{% url lessons.views.show_comments lesson.slug %}">{{ comments_num }}条评论</a>
     </div>
 </div>
