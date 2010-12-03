@@ -43,10 +43,13 @@ def _check_markdown_cache(lesson):
   if not path.exists(cache_file):
     import markdown
     import codecs
+    # process with Markdown
     cache_content = markdown.markdown(lesson.content)
     cache_output = codecs.open(cache_file, 'wU', 'utf-8')
     cache_output.write(cache_content)
+    cache_output.close()
   # now the HTML file should exist
+  # build the template file name to be included in the template
   markdown_template = 'cache/%s' % markdown_template
   return markdown_template
 
