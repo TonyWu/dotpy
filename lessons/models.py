@@ -5,24 +5,16 @@ class Lesson(models.Model):
 	subject = models.CharField(max_length=100)
 	slug = models.CharField(max_length=30)
 	summary = models.CharField(max_length=500)
+	content = models.TextField(max_length=99999)
 
 	def __unicode__(self):
 		return self.subject;
 
-class Article(models.Model):
-	title = models.CharField(max_length=100)
-	slug = models.CharField(max_length=30)
-	content = models.CharField(max_length=3000)
-	of_lesson = models.ForeignKey(Lesson)
-	of_article = models.ForeignKey('self', blank=True, null=True)
-
-	def __unicode__(self):
-		return self.title;
-
 class Comment(models.Model):
 	content = models.CharField(max_length=200)
+	created_on = models.DateTimeField(auto_now=True)
 	author = models.ForeignKey(User)
-	article = models.ForeignKey(Article)
+	lesson = models.ForeignKey(Lesson)
 
 	def __unicode__(self):
-		return self.author.getFullName();
+		return self.author.get_full_name();

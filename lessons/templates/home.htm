@@ -1,74 +1,13 @@
-{% extends '_base.html' %}
-{% block title %}Lessons - dotPy{% endblock %}
-{% block css %}<link rel="stylesheet" type="text/css" href="/media/css/main.css"/>{% endblock %}
-{% block body %}
-    	<div id="wrapper">
-    		<div id="header" class="clr">
-    			<div id="logo">
-    				<div class="text_title"><img src="/media/images/title.png" /></div>
-    				<div class="text_subtitle"><span>DotPY.org</span> --- Just Python</div>
-    			</div>
-    			<ul id="nav" class="clr">
-    				<li><a href="#">Home</a></li>
-    				<li><a href="#">Cheat Sheets</a></li>
-    				<li><a href="#">Videos</a></li>
-    				<li><a href="#">Snippets</a></li>
-    				<li><a href="#">Q&A</a></li>
-    			</ul>
-    		</div>
-    		<div id="main" class="clr">
-    			<div id="content">
-    				<div class="box notice">
-							Learning Python series...
-    				</div>
-    				<div class="box">
-    					<h2>Latest Cheat Sheets</h2>
-    					<ul class="link_list">
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    					</ul>
-    				</div>
-    				<div class="box">
-    					<h2>Latest Questions & Answers</h2>
-    					<ul class="link_list">
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!This is an article!This is an article!This is an article!This is an article!This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    					</ul>
-    				</div>
-    				<div class="box">
-    					<h2>Latest Snippets</h2>
-    					<ul class="link_list">
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    						<li><a href="#">This is an article!</a></li>
-    					</ul>
-    				</div>
-    			</div>
-    			<div id="aside">
-    				<div class="aside_box">
-    					<h2>Latest Videos</h2>
-    					<ul class="block_list">
-    						<li>
-    							<a href="#video" class="block_main"><img src="/media/images/example.png" /></a>
-    							<a href="#video">This is a video!</a>
-    						</li>
-    						<li>
-    							<a href="#video" class="block_main"><img src="/media/images/example.png" /></a>
-    							<a href="#video">This is a video!</a>
-    						</li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
-    		<div id="footer">
-    			@ 2010 All rights reservd.
-    		</div>
-    	</div>
+{% extends 'base.htm' %}
+{% block main %}
+<div>
+  {% for lesson in lessons %}
+  <div class="box">
+    <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a></h2>
+    <div class="notice">
+        {{ lesson.summary }}
+    </div>
+	</div>
+	{% endfor %}
+</div>
 {% endblock %}

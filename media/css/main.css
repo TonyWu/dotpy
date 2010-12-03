@@ -2,7 +2,7 @@
 a{ color: #04A; text-decoration: none; }
 a:hover{ border-bottom: 1px dotted #999; color: #ff5675; }
 del{ color: #888; }
-html,body{ background: #FFF; color: #444; font: 14px/160% "Microsoft YaHei","Î¢ÈíÑÅºÚ",Verdana, Arial, Helvetica, sans-serif; text-align: center; }
+html,body{ background: #FFF; color: #444; font: 14px/160% "Microsoft YaHei","Î¢ï¿½ï¿½ï¿½Åºï¿½",Verdana, Arial, Helvetica, sans-serif; text-align: center; }
 img{ border: none; }
 ins{ background: #393939; text-decoration: none; }
 ol li{ list-style: decimal; }
@@ -14,7 +14,6 @@ th{ font-weight: normal; }
 ul li{ list-style: none; }
 .clr:after{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .clr{ zoom: 1; }
-h1 { font-size: 2em; padding: 0.5em 0; border-bottom: dotted 1px #ccc; }
 h3 { font-size: 1.2em; line-height: 2em; font-weight: bold; }
 h4 { font-size: 1.1em; font-weight: bold; }
 p { margin: 0.5em 0; text-indent: 2em; }
@@ -35,11 +34,12 @@ textarea { border: solid 1px #ccc; padding: 3px; }
 .box h2,
 .aside_box h2 { font-size: 1.5em; line-height: 2em; }
 .link_list li { display: list-item; margin-left: 2em; list-style-type: disc; padding-top: 0.5em; }
-.article_info { line-height: 2em; text-align: right; margin-right: 2em; }
+.article_title { font-size: 2em; padding: 1em 0; text-align: center; }
+.article_info { line-height: 2em; margin-right: 2em; margin-bottom: 1em; }
 .article_content { margin: 10px 0; }
 .notice { border: solid 1px #ccc; background: #f6f6f6; padding: 0.5em; }
-.comments { border-top: solid 1px #ccc; }
-.comment { margin-top: 0; }
+.comments {}
+.comment { margin-top: 10px; }
 .comment_info { border-bottom: dashed 1px #ccd; line-height: 2em; margin-bottom: 0.5em; }
 .comment_author { font-weight: bold; }
 .comment_time { color: #666; }
