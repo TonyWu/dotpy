@@ -14,8 +14,6 @@ urlpatterns = patterns('',
     (r'^learn/', include('dotpy.lessons.urls')),
     (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
-    (r'^_$', views.index),
-    (r'^_article$', views.article),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

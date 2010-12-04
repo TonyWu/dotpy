@@ -5,7 +5,7 @@ from dotpy.lessons.models import Lesson, Comment
 
 def home(request):
   lessons = Lesson.objects.all()
-  return render_to_response('home.htm', {'lessons': lessons})
+  return render_to_response('home.html', {'lessons': lessons})
 
 def _load_with_slug(slug):
   '''
@@ -37,7 +37,7 @@ def _check_markdown_cache(lesson):
   cache_dir = path.join(base_dir, 'templates/cache/')
   if not path.exists(cache_dir):
     os.mkdir(cache_dir)
-  markdown_template = '%s.htm' % lesson.slug
+  markdown_template = '%s.html' % lesson.slug
   cache_file = path.join(cache_dir, markdown_template)
   # now check the cache file, if not exist, create it
   if not path.exists(cache_file):
@@ -56,14 +56,14 @@ def _check_markdown_cache(lesson):
 def show(request, lesson_slug):
   if not lesson_slug:
     # show lessons home page
-    return render_to_response('home.htm')
+    return render_to_response('home.html')
 
   # load lesson from database
   lesson = _load_with_slug(lesson_slug)
 
   # check if the cache file exists for this lesson
   markdown_template = _check_markdown_cache(lesson)
-  return render_to_response('lesson.htm', \
+  return render_to_response('lesson.html', \
             {'lesson':lesson, \
              'comments_num': lesson.comment_set.count(), \
              'markdown_template': markdown_template
@@ -72,4 +72,4 @@ def show(request, lesson_slug):
 def show_comments(request, lesson_slug):
   lesson = _load_with_slug(lesson_slug)
   comments = lesson.comment_set.all()
-  return render_to_response('comment.htm', {'lesson': lesson, 'comments': comments})
+  return render_to_response('comment.html', {'lesson': lesson, 'comments': comments})

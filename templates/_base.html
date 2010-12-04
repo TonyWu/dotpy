@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<link rel="shortcut icon" href="/media/images/favicon.ico" />
-<title>{% block title %}dotPy{% endblock %}</title>
-{% block css %}{% endblock %}{% block js %}{% endblock %}
-{% include "_google-analytics.html" %}</head>
-<body>
-{% block body %}{% endblock %}
-</body>
+{% extends '_html.html' %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/media/css/all.css"/>{% endblock %}
+{% block html_body %}
+<div id="container"> 
+  <div id="topnav"> 
+    <h1 id="title">dotPy - Just Python</h1> 
+    <div id="nav-main">
+      <ul>
+		<li><a href="/" title="Home Page">首页</a></li>
+		<li><a href="/learn" title="Get Started!">快速入门</a></li>
+		<li><a href="/snippets" title="Code Snippets">代码片段</a></li>
+		<li><a href="/cheat-sheets" title="Cheat Sheets">程序样板</a></li>
+		<li><a href="/community" title="Community Activities">社区活动</a></li>
+	  </ul>
+	  <!-- TODO
+      <div class="quickref"> 
+        <form method="GET" action="/search"> 
+        References:
+        <a href="/pkg/">Packages</a> 
+        <a href="/cmd/">Commands</a> 
+        <a href="/doc/go_spec.html">Specification</a> 
+        <input id="search" type="text" name="q" value="code search" class="inactive" /> 
+        </form> 
+      </div> 
+       -->
+    </div> 
+    <a id="logo-box" href="/"></a> 
+  </div> 
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+  <div id="site-info"> 
+    <p>Except as noted, this content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p> 
+  </div>
+</div>
+{% endblock %}

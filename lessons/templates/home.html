@@ -1,13 +1,12 @@
-{% extends 'base.htm' %}
-{% block main %}
-<div>
+{% extends '_base.html' %}
+{% block title %}快速入门系列 - {{ block.super }}{% endblock %}
+{% block content %}
   {% for lesson in lessons %}
-    <div class="box">
+    <div>
     <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a></h2>
-    <div class="notice">
+    <p>
         {{ lesson.summary }}
-    </div>
+    </p>
     </div>
 	{% endfor %}
-</div>
 {% endblock %}

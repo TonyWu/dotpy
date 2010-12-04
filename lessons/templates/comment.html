@@ -1,7 +1,6 @@
-{% extends 'base.htm' %}
-{% block title %}评论 - {{ lesson.subject }} - dotPy{% endblock %}
-{% block main %}
-<div>
+{% extends '_base.html' %}
+{% block title %}评论 - {{ lesson.subject }} - {{ block.super }}{% endblock %}
+{% block content %}
     <div class="box comments">
         <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a>
               的{{ comments|length }}条评论...</h2>
@@ -50,5 +49,4 @@
             </div>
         </form>
     </div>
-</div>
 {% endblock %}
