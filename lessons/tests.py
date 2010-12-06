@@ -7,12 +7,11 @@ Replace these with more appropriate tests for your application.
 
 from django.test import TestCase
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+class ViewsTest(TestCase):
+  def test_views(self):
+    from dotpy.lessons import views
+    import doctest
+    doctest.testmod(m=views)
 
 __test__ = {"doctest": """
 Another way to test that 1 + 1 is equal to 2.
