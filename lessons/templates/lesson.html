@@ -2,13 +2,10 @@
 {% block title %}{{ lesson.subject }} - {{ block.super }}{% endblock %}
 {% block content %}
 <h1>{{ lesson.subject }}</h1>
-<p>
 <!-- The Table of Contents -->
 <div id="nav">{{ lesson.summary }}</div>
-</p>
+<p/>
 <!-- Lesson Content -->
 {% include markdown_template %}
-<p>
-<a href="{% url lessons.views.show_comments lesson.slug %}">{{comments_num }}条评论</a>
-</p>
+<p><a href="{% url lessons.views.show_comments lesson.slug %}">{{comments_num }}条评论</a></p>
 {% endblock %}

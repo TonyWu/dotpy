@@ -1,7 +1,9 @@
 from django.http import Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 import logging as log
-from dotpy.lessons.models import Lesson, Comment
+from dotpy.lessons.models import Lesson, Comment, LessonForm
+from django.template.context import RequestContext
+from dotpy.lessons.util import _check_markdown_cache
 
 def home(request):
   lessons = Lesson.objects.all()
@@ -54,43 +56,13 @@ def _load_by_slug(slug):
     raise Http404()
   return obj
 
-def _check_markdown_cache(lesson):
-  '''
-  Check if the cache file exists for this lesson.
-  If not, create one with the results of Markdown processing.
-  The "cache file" means the resulting HTML content of the
-  Markdown source of the lesson.
-  '''
-  import os
-  from os import path
-  base_dir = path.abspath(path.dirname(__file__))
-  # first, check the cache directory
-  cache_dir = path.join(base_dir, 'templates/cache/')
-  if not path.exists(cache_dir):
-    os.mkdir(cache_dir)
-  markdown_template = '%s.html' % lesson.slug
-  cache_file = path.join(cache_dir, markdown_template)
-  # now check the cache file, if not exist, create it
-  if not path.exists(cache_file):
-    import markdown
-    import codecs
-    # process with Markdown
-    cache_content = markdown.markdown(lesson.content)
-    cache_output = codecs.open(cache_file, 'wU', 'utf-8')
-    cache_output.write(cache_content)
-    cache_output.close()
-  # now the HTML file should exist
-  # build the template file name to be included in the template
-  markdown_template = 'cache/%s' % markdown_template
-  return markdown_template
-
-def show(request, lesson_slug):
-  if not lesson_slug:
+def show(request, slug):
+  if not slug:
     # show lessons home page
     return render_to_response('home.html')
 
   # load lesson from database
-  lesson = _load_by_slug(lesson_slug)
+  lesson = _load_by_slug(slug)
 
   # check if the cache file exists for this lesson
   markdown_template = _check_markdown_cache(lesson)
@@ -100,7 +72,23 @@ def show(request, lesson_slug):
              'markdown_template': markdown_template
             })
 
-def show_comments(request, lesson_slug):
-  lesson = _load_by_slug(lesson_slug)
+def show_comments(request, slug):
+  lesson = _load_by_slug(slug)
   comments = lesson.comment_set.all()
   return render_to_response('comment.html', {'lesson': lesson, 'comments': comments})
+
+def edit(request, slug):
+  # TODO admin required
+  if request.method == 'POST':
+    lesson = _load_by_slug(slug)
+    form = LessonForm(request.POST, instance=lesson)
+    if form.is_valid():
+      form.save()
+      return redirect('/learn/%s' % slug)
+  else:
+    if slug:
+      lesson = _load_by_slug(slug)
+      form = LessonForm(instance=lesson)
+    else:
+      form = LessonForm()
+    return render_to_response('lesson_form.html', {'form': form}, RequestContext(request))

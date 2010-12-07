@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+from dotpy.lessons.util import _check_markdown_cache
 
 class Lesson(models.Model):
 	subject = models.CharField(max_length=100)
@@ -8,7 +10,11 @@ class Lesson(models.Model):
 	content = models.TextField(max_length=99999)
 
 	def __unicode__(self):
-		return self.subject;
+		return self.subject
+	
+	def save(self, *args, **kwargs):
+		super(Lesson, self).save(*args, **kwargs)
+		_check_markdown_cache(self, True)
 
 class Comment(models.Model):
 	content = models.CharField(max_length=200)
@@ -18,3 +24,7 @@ class Comment(models.Model):
 
 	def __unicode__(self):
 		return self.author.get_full_name();
+
+class LessonForm(ModelForm):
+  class Meta:
+  	model = Lesson

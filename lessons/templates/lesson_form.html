@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% block title %}编辑快速入门 - {{ block.super }}{% endblock %}
+{% block content %}
+    {% if form.errors %}
+    <p style="color:red">请改正！</p>
+    {% endif %}
+    
+    <form action="" method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="好了"/>
+    </form>
+{% endblock %}
