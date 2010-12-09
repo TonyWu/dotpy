@@ -109,6 +109,13 @@ h1#title {
   color: #444;
 }
 
+#lesson-subject {
+	text-align: center;
+}
+#nav {
+	margin-top: 20px;
+}
+
 /* Footer */
 #site-info {
   position: relative;
