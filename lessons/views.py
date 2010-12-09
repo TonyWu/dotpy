@@ -69,7 +69,7 @@ def show(request, slug):
   return render_to_response('lesson.html', \
             {'lesson':lesson, \
              'comments_num': lesson.comment_set.count(), \
-             'markdown_template': markdown_template
+             'markdown_template': markdown_template \
             })
 
 def show_comments(request, slug):
@@ -80,15 +80,18 @@ def show_comments(request, slug):
 def edit(request, slug):
   # TODO admin required
   if request.method == 'POST':
-    lesson = _load_by_slug(slug)
-    form = LessonForm(request.POST, instance=lesson)
+    if slug:
+      lesson = _load_by_slug(slug)
+      form = LessonForm(request.POST, instance=lesson)
+    else:
+      form = LessonForm(request.POST)
     if form.is_valid():
       form.save()
-      return redirect('/learn/%s' % slug)
+      return redirect('/learn/%s' % form.instance.slug)
   else:
     if slug:
       lesson = _load_by_slug(slug)
       form = LessonForm(instance=lesson)
     else:
       form = LessonForm()
-    return render_to_response('lesson_form.html', {'form': form}, RequestContext(request))
+  return render_to_response('lesson_form.html', {'form': form}, RequestContext(request))

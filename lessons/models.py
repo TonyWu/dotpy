@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from dotpy.lessons.util import _check_markdown_cache
 
 class Lesson(models.Model):
 	subject = models.CharField(max_length=100)
-	slug = models.CharField(max_length=30)
+	slug = models.CharField(max_length=30, unique=True)
 	summary = models.CharField(max_length=500)
 	content = models.TextField(max_length=99999)
 
@@ -28,3 +28,7 @@ class Comment(models.Model):
 class LessonForm(ModelForm):
   class Meta:
   	model = Lesson
+  	widgets = {
+				'summary': Textarea({'cols': 100, 'rows': 20}),
+				'content': Textarea({'cols': 100, 'rows': 30}),
+		}
