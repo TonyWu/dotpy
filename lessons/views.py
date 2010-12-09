@@ -4,6 +4,7 @@ import logging as log
 from dotpy.lessons.models import Lesson, Comment, LessonForm
 from django.template.context import RequestContext
 from dotpy.lessons.util import _check_markdown_cache
+from django.contrib.auth.decorators import login_required
 
 def home(request):
   lessons = Lesson.objects.all()
@@ -77,6 +78,7 @@ def show_comments(request, slug):
   comments = lesson.comment_set.all()
   return render_to_response('comment.html', {'lesson': lesson, 'comments': comments})
 
+@login_required
 def edit(request, slug):
   # TODO admin required
   if request.method == 'POST':
