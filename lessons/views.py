@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, redirect
 import logging as log
 from dotpy.lessons.models import Lesson, Comment, LessonForm
 from django.template.context import RequestContext
-from dotpy.lessons.util import _check_markdown_cache
+from dotpy.lessons.util import check_lesson_markdown_cache
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -66,7 +66,7 @@ def show(request, slug):
   lesson = _load_by_slug(slug)
 
   # check if the cache file exists for this lesson
-  markdown_template = _check_markdown_cache(lesson)
+  markdown_template = check_lesson_markdown_cache(lesson)
   return render_to_response('lesson.html', \
             {'lesson':lesson, \
              'comments_num': lesson.comment_set.count(), \

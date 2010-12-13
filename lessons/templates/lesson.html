@@ -8,5 +8,4 @@
 <!-- Lesson Content -->
 {% include markdown_template %}
 <a href="{% url lessons.views.show_comments lesson.slug %}">{{comments_num }}条评论</a>
-<p/>
 {% endblock %}
