@@ -48,6 +48,9 @@ def _gen_table_of_contents_for_lesson(content):
   else: # sub_title_list
     return new_content
 
+def _escape_template_tags(content):
+  return content.replace('{', '{%templatetag openbrace%}')
+
 def check_lesson_markdown_cache(lesson, force=False):
   """
   Check if the cache file exists for this lesson.
@@ -72,6 +75,9 @@ def check_lesson_markdown_cache(lesson, force=False):
     cache_content = markdown.markdown(lesson.content)
     # generate the table of contents
     cache_content = _gen_table_of_contents_for_lesson(cache_content)
+    # do NOT forget to replace Django template tags
+    cache_content = _escape_template_tags(cache_content)
+    # wirte into file
     cache_output = codecs.open(cache_file, 'wU', 'utf-8')
     cache_output.write(cache_content)
     cache_output.close()
