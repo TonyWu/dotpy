@@ -110,7 +110,7 @@ h1#title {
 }
 
 #lesson-subject {
-	text-align: center;
+	text-align: left;
 }
 #nav {
 	margin-top: 20px;
@@ -163,6 +163,11 @@ h1#title {
 .navtop a {
   font-weight: normal; font-size: 7pt; 
   float: right; color: #999;
+}
+.comment-link {
+  margin-top: 1em;
+  font-weight: bold;
+  text-align: right;
 }
 
 /* Content and Code Highlighting */
