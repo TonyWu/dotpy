@@ -48,6 +48,7 @@ pre {
 a#logo-box {
   display: block;
   height: 55px;
+  width: 464px;
 }
 h1#title {
   display: none;
@@ -99,6 +100,7 @@ h1#title {
 */
 #nav-main .quickref {
   color: #444;
+  margin-top: 15px;
 }
 #search {
   width: 100px;

@@ -19,7 +19,7 @@ def _gen_table_of_contents_for_lesson(content):
       sub_title = match.group(1)
       sub_id_count += 1
       sub_id = '%s%s' % (sub_id_prefix, sub_id_count)
-      new_content += u'<h2 id="%s">%s<span class="navtop"><a href="#lesson-subject">[顶部]</a></span></h2>\n' % (sub_id, sub_title)
+      new_content += u'<h2 id="%s">%s<span class="navtop"><a href="#topnav">[顶部]</a></span></h2>\n' % (sub_id, sub_title)
       sub_title_list.append((sub_id, sub_title))
     else:
       new_content += line + '\n'
