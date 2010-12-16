@@ -78,7 +78,7 @@ def check_lesson_markdown_cache(lesson, force=False):
     # do NOT forget to replace Django template tags
     cache_content = _escape_template_tags(cache_content)
     # wirte into file
-    cache_output = codecs.open(cache_file, 'wU', 'utf-8')
+    cache_output = codecs.open(cache_file, 'w', 'utf8')
     cache_output.write(cache_content)
     cache_output.close()
   # now the HTML file should exist
