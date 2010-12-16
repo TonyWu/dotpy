@@ -29,6 +29,6 @@ class LessonForm(ModelForm):
   class Meta:
   	model = Lesson
   	widgets = {
-				'summary': Textarea({'cols': 100, 'rows': 20}),
+				'summary': Textarea({'cols': 100, 'rows': 5}),
 				'content': Textarea({'cols': 100, 'rows': 30}),
 		}

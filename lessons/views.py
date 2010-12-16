@@ -6,9 +6,15 @@ from django.template.context import RequestContext
 from dotpy.lessons.util import check_lesson_markdown_cache
 from django.contrib.auth.decorators import login_required
 
+#
+# Note: Remember to use RequestContext(request) to
+# show user login status
+#
+
 def home(request):
   lessons = Lesson.objects.all()
-  return render_to_response('home.html', {'lessons': lessons})
+  return render_to_response('home.html', {'lessons': lessons},
+                            RequestContext(request))
 
 def _load_by_slug(slug):
   """
@@ -71,12 +77,14 @@ def show(request, slug):
             {'lesson':lesson, \
              'comments_num': lesson.comment_set.count(), \
              'markdown_template': markdown_template \
-            })
+            }, RequestContext(request))
 
 def show_comments(request, slug):
   lesson = _load_by_slug(slug)
   comments = lesson.comment_set.all()
-  return render_to_response('comment.html', {'lesson': lesson, 'comments': comments})
+  return render_to_response('comment.html',
+            {'lesson': lesson, 'comments': comments},
+            RequestContext(request))
 
 @login_required
 def edit(request, slug):

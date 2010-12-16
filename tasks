@@ -1,4 +1,5 @@
 Login with OpenID, and display comment author's site if exists                     | id:3f47251fd5224c05c0850ba76aabf05fb6dc8e14
 Run the Django project with a PID file, and use Git post-receive to do auto-deploy | id:5ffaeb252cf963a9ddcf003da8da0cb5fc0da5b6
 Use MySQL/PostgreSQL for production. Do NOT put DB configurations into Git control | id:9a5bc0f2f70b7e13b7c10f488cf717318eecf78b
+Highlight code for lessons                                                         | id:be91d7e9c2b810db4315b914aac6f6d378e1b73a
 Create new favicon for dotpy.org                                                   | id:e58d766dbf526bc3a227590f856744aee14abe44

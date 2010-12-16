@@ -12,17 +12,15 @@
 		<li><a href="/cheat-sheets" title="Cheat Sheets">程序样板</a></li>
 		<li><a href="/community" title="Community Activities">社区活动</a></li>
 	  </ul>
-	  <!-- TODO
       <div class="quickref"> 
         <form method="GET" action="/search"> 
-        References:
-        <a href="/pkg/">Packages</a> 
-        <a href="/cmd/">Commands</a> 
-        <a href="/doc/go_spec.html">Specification</a> 
-        <input id="search" type="text" name="q" value="code search" class="inactive" /> 
+        {% if user.is_authenticated %}
+	        {{ user.username }}，欢迎你！
+	      {% else %}
+	        <a href="/login/">Login</a> 
+	      {% endif %}
         </form> 
       </div> 
-       -->
     </div> 
     <a id="logo-box" href="/"></a> 
   </div> 
@@ -30,7 +28,7 @@
     {% block content %}{% endblock %}
   </div>
   <div id="site-info"> 
-    <p>除非特别指明，这些内容属于<a rel="license" href="http://zh.wikipedia.org/zh/%E5%85%AC%E6%9C%89%E9%A2%86%E5%9F%9F">公有领域</a></p> 
+    <p>除非特别指明，这些内容使用此许可证：<a rel="license" href="http://creativecommons.org/licenses/by/2.5/cn/">署名 2.5 中国大陆</a></p> 
   </div>
 </div>
 {% endblock %}

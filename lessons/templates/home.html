@@ -4,7 +4,7 @@
     {% for lesson in lessons %}
     <div>
 	    <h2><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a></h2>
-	    <p>{{ lesson.summary }}</p>
+	    <p>{{ lesson.summary|safe }}</p>
     </div>
     {% endfor %}
 {% endblock %}

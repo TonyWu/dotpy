@@ -1,17 +1,6 @@
-sub_title_list = []
+# coding=utf-8
 
-def _replace_lesson_sub_title(match):
-  """
-  Replace the current sub title of the lesson with new one:
-  add the "id" attribute and "top" link.
-  Parameter match: the match object.
-  """
-  global sub_title_list
-  sub_id = 'lesson_sub_title_%s' % len(sub_title_list)
-  sub_title = match.group(1)
-  sub_title_list.append((sub_id, sub_title))
-  return '<h2 id="%s">%s <span class="navtop"><a href="#lesson-subject">[Top]</a></span></h2>' \
-          %s (sub_id, sub_title)
+### Utility of the lessons package ###
 
 def _gen_table_of_contents_for_lesson(content):
   """
@@ -19,9 +8,21 @@ def _gen_table_of_contents_for_lesson(content):
   content (HTML) and return the full content
   """
   import re
-  global sub_title_list # TODO
-  pattern = r'<h2>(\w+)</h2>'
-  new_content = re.sub(pattern, _replace_lesson_sub_title, content)
+  pattern = re.compile(r'^<h2>([^<]+)</h2>$')
+  sub_id_prefix = 'tmp_'
+  sub_id_count = 0
+  new_content = ''
+  sub_title_list = []
+  for line in content.splitlines():
+    match = pattern.search(line)
+    if match: # sub title found
+      sub_title = match.group(1)
+      sub_id_count += 1
+      sub_id = '%s%s' % (sub_id_prefix, sub_id_count)
+      new_content += u'<h2 id="%s">%s<span class="navtop"><a href="#topnav">[顶部]</a></span></h2>\n' % (sub_id, sub_title)
+      sub_title_list.append((sub_id, sub_title))
+    else:
+      new_content += line + '\n'
   if sub_title_list:
     table_of_contents = '''
       <div id="nav">
@@ -30,20 +31,23 @@ def _gen_table_of_contents_for_lesson(content):
             <td class="first">
               <dl>
     '''
-    per_column_num = math.ceil(len(sub_title_list))
+    import math
+    per_column_num = math.ceil(len(sub_title_list) / 2)
     if per_column_num < 7:
       per_column_num = 7
-    _count = 1
+    _count = 0
     for sub_item in sub_title_list:
+      _count += 1
       _mod = _count % per_column_num
-      if _mod == 0:
-        table_of_contents += '</dl></td>'
-      elif _mod == 1 and _count != 1:
+      if _mod == 1 and _count != 1:
         table_of_contents += "<td><dl>"
       _item = '<dt><a href="#%s">%s</a></dt>' % sub_item
       table_of_contents += _item
+      if _mod == 0:
+        table_of_contents += '</dl></td>'
     if len(sub_title_list) % per_column_num != 0:
       table_of_contents += '</dl></td>'
+    table_of_contents += '</tr></table></div>'
     return '%s\n%s' % (table_of_contents, new_content)
   else: # sub_title_list
     return new_content
