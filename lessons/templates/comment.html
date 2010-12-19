@@ -2,7 +2,6 @@
 {% block title %}评论 - {{ lesson.subject }} - {{ block.super }}{% endblock %}
 {% block content %}
   <h1><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a> - 评论</h1>
-  <div style="margin:35px 0;"></div>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_shortname = 'dotpy';
