@@ -1,13 +1,15 @@
+# encoding=utf8
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm, Textarea
 from dotpy.lessons.util import check_lesson_markdown_cache
 
 class Lesson(models.Model):
-	subject = models.CharField(max_length=100)
-	slug = models.CharField(max_length=30, unique=True)
-	summary = models.CharField(max_length=500)
-	content = models.TextField(max_length=99999)
+	subject = models.CharField(max_length=100, verbose_name=u'标题')
+	slug = models.CharField(max_length=30, unique=True, verbose_name=u'URL Slug')
+	summary = models.CharField(max_length=500, verbose_name=u'简介（Raw HTML）')
+	content = models.TextField(max_length=99999, verbose_name=u'内容')
 
 	def __unicode__(self):
 		return self.subject

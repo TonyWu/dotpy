@@ -5,6 +5,15 @@
 <!-- Lesson Content -->
 {% include markdown_template %}
 <div class="comment-link">
-<a href="{% url lessons.views.show_comments lesson.slug %}">{{comments_num }}条评论</a>
+<a href="/learn/{{ lesson.slug }}/#disqus_thread">评论...</a>
 </div>
+<script type="text/javascript">
+    var disqus_shortname = 'dotpy';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+  </script>
 {% endblock %}
