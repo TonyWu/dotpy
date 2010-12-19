@@ -1,9 +1,8 @@
 {% extends '_base.html' %}
 {% block title %}评论 - {{ lesson.subject }} - {{ block.super }}{% endblock %}
 {% block content %}
-  <h1><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a>: 
-      <a href="/learn/{{ lesson.slug }}/#disqus_thread">评论...</a></h1>
-  <p></p>
+  <h1><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a> - 评论</h1>
+  <div style="margin:35px 0;"></div>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_shortname = 'dotpy';
@@ -12,12 +11,6 @@
      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
   </script>
   <noscript>请开启 JavaScript 以便查看 <a href="http://disqus.com/?ref_noscript=dotpy">评论</a>。</noscript>
 {% endblock %}
