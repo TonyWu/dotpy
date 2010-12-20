@@ -35,11 +35,15 @@ def logout(request):
   return redirect('/')
 
 @csrf_exempt
-def rpx(request, token):
+def rpx(request):
   import urllib
   import urllib2
   import json
 
+  token = request.POST.get('token')
+  if not token:
+    return redirect('/')
+  
   api_params = {
     'token': token,
     'apiKey': 'bfd67c0c106bec8ad859890ff16e31e609fd3aa3',
