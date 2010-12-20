@@ -12,6 +12,10 @@ urlpatterns = patterns('',
     # (r'^dotpy/', include('dotpy.foo.urls')),
     (r'^$', views.notify),
     (r'^learn/', include('dotpy.lessons.urls')),
+    (r'^rpx$', views.rpx),
+    (r'^logout/$', views.logout),
+    # Testing only: login as a test user
+    (r'^si/$', views.si),
     (r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
 
