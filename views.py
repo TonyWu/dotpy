@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, redirect
+from django.template.context import RequestContext
 import logging as log
 from dotpy.util import User, SessionKey
 from dotpy import settings
@@ -75,4 +76,4 @@ def rpx(request, token):
   else:
     log.error('OpoenID RPX failed: ' + auth_info['err']['msg'])
     
-  return redirect('/')
+  return render_to_response('_index.htm', RequestContext(request))
