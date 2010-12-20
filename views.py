@@ -1,6 +1,5 @@
 from django.shortcuts import render_to_response, redirect
-from django.template.context import RequestContext
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 import logging as log
 from dotpy.util import User, SessionKey
 from dotpy import settings
@@ -35,7 +34,7 @@ def logout(request):
     pass
   return redirect('/')
 
-@csrf_protect
+@csrf_exempt
 def rpx(request, token):
   import urllib
   import urllib2
@@ -78,4 +77,4 @@ def rpx(request, token):
   else:
     log.error('OpoenID RPX failed: ' + auth_info['err']['msg'])
     
-  return render_to_response('_index.htm', RequestContext(request))
+  return redirect('/')
