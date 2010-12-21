@@ -1,4 +1,5 @@
 *.pyc
+settings/*-local.conf
 sqlite/prod.db
 Session.vim
 .project

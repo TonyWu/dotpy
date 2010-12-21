@@ -110,3 +110,12 @@ INSTALLED_APPS = (
 
     'dotpy.lessons',
     )
+
+DOTPY_RPX_APIKEY = ''
+# Execute settings/*.conf in order
+import glob
+conf_files = glob.glob(path.join(base_dir, 'settings', '*.conf'))
+conf_files.sort()
+for f in conf_files:
+  execfile(path.abspath(f))
+
