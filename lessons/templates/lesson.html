@@ -1,5 +1,6 @@
 {% extends '_wide.html' %}
 {% block title %}{{ lesson.subject }} - {{ block.super }}{% endblock %}
+{% block extra_head %}{% include '_prettify.html' %}{% endblock %}
 {% block content %}
 <h1 id="lesson-subject">{{ lesson.subject }}</h1>
 <!-- Lesson Content -->

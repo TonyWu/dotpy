@@ -29,11 +29,10 @@ a:active {
   color: #c00;
 }
 code, pre {
-  font-size: 1.2em; 
+  font-size: 1.1em; 
 }
 pre {
   background: #F0F0F0;
-  padding: 0.5em 1em;
 }
 
 /* Top bar */
@@ -172,20 +171,6 @@ h1#title {
   text-align: right;
 }
 
-/* Content and Code Highlighting */
-pre.ebnf, pre.grammar {
-  background: #FFFFE0;
-}
-span.comment {
-  color: #002090;
-}
-span.highlight {
-  background: #FFFF90;
-  font-weight: bold;
-}
-span.alert {
-  color: #D00000;
-}
 #nav table {
   width: 100%;
 }
