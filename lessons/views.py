@@ -1,6 +1,4 @@
-from django.http import Http404
 from django.shortcuts import render_to_response, redirect, get_object_or_404
-import logging as log
 from django.contrib.auth.decorators import login_required
 from dotpy.lessons.models import Lesson, Comment, LessonForm
 from dotpy.lessons.util import check_lesson_markdown_cache

@@ -34,3 +34,4 @@ class LessonForm(ModelForm):
 				'summary': Textarea({'cols': 100, 'rows': 5}),
 				'content': Textarea({'cols': 100, 'rows': 30}),
 		}
+
