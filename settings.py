@@ -1,39 +1,24 @@
 # Django settings for dotpy project.
 
-import socket
-from os import path
+import os.path
 
-dev_hosts = ['xhh-laptop', 'xhh-desktop', 'xhh-ubuntu']
-host_name = socket.gethostname()
-if host_name in dev_hosts:
-  DEBUG = True
-else:
-  DEBUG = False
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Xu Hui Hui', 'xhh@xhh.me'),
-    )
+)
 
 MANAGERS = ADMINS
 
-base_dir = path.abspath(path.dirname(__file__))
-
-if DEBUG:
-  db_file = 'sqlite/dev.db'
-else:
-  db_file = 'sqlite/prod.db'
-
-DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-      'NAME': path.join(base_dir, db_file),                      # Or path to database file if using sqlite3.
-      'USER': '',                      # Not used with sqlite3.
-      'PASSWORD': '',                  # Not used with sqlite3.
-      'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-      'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-      }
-    }
+DATABASE_ENGINE = ''
+DATABASE_NAME = ''
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -60,7 +45,7 @@ USE_L10N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = path.join(base_dir, 'media/')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -96,7 +81,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    path.join(base_dir, 'templates').replace('\\', '/'),
+    os.path.join(PROJECT_ROOT, 'templates').replace('\\', '/'),
     )
 
 INSTALLED_APPS = (
@@ -111,11 +96,12 @@ INSTALLED_APPS = (
     'dotpy.lessons',
     )
 
-DOTPY_RPX_APIKEY = ''
-# Execute settings/*.conf in order
-import glob
-conf_files = glob.glob(path.join(base_dir, 'settings', '*.conf'))
-conf_files.sort()
-for f in conf_files:
-  execfile(path.abspath(f))
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
+# Settings should be in local_settings:
+# Database configurations
+# DEBUG and TEMPLATE_DEBUG
+# DOTPY_RPX_APIKEY

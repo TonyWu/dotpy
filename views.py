@@ -5,7 +5,7 @@ from dotpy.util import User, SessionKey
 from dotpy import settings
 
 def notify(request):
-  return render_to_response('_index.htm')
+  return render_to_response('index.html')
 
 def sign_in_user(request, identifier, name, email, profile_pic_url):
   """

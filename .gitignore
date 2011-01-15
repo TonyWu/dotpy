@@ -1,8 +1,8 @@
 *.pyc
-settings/*-local.conf
-sqlite/prod.db
+local_settings.py
+sqlite
+templates/lessons/cache
 Session.vim
 .project
 .pydevproject
 .settings
-lessons/templates/cache

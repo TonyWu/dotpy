@@ -1,5 +1,7 @@
 # coding=utf-8
 
+from django.conf import settings
+
 ### Utility of the lessons package ###
 
 def _gen_table_of_contents_for_lesson(content):
@@ -63,16 +65,14 @@ def check_lesson_markdown_cache(lesson, force=False):
   Markdown source of the lesson.
   """
   import os
-  from os import path
-  base_dir = path.abspath(path.dirname(__file__))
   # first, check the cache directory
-  cache_dir = path.join(base_dir, 'templates/cache/')
-  if not path.exists(cache_dir):
+  cache_dir = os.path.join(settings.PROJECT_ROOT, 'templates/lessons/cache/')
+  if not os.path.exists(cache_dir):
     os.mkdir(cache_dir)
   markdown_template = '%s.html' % lesson.slug
-  cache_file = path.join(cache_dir, markdown_template)
+  cache_file = os.path.join(cache_dir, markdown_template)
   # now check the cache file, if not exist, create it
-  if force or not path.exists(cache_file):
+  if force or not os.path.exists(cache_file):
     import markdown
     import codecs
     # generate HTML with Markdown
@@ -87,5 +87,5 @@ def check_lesson_markdown_cache(lesson, force=False):
     cache_output.close()
   # now the HTML file should exist
   # build the template file name to be included in the template
-  markdown_template = 'cache/%s' % markdown_template
+  markdown_template = 'lessons/cache/%s' % markdown_template
   return markdown_template
