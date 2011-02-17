@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import login, logout
-from dotpy import views
-from dotpy.core import views as core_views
+from dotpy.core import views
 from dotpy import settings
 
 # Uncomment the next two lines to enable the admin:

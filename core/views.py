@@ -1,10 +1,14 @@
 # encoding=utf8
 
 from django.template.context import RequestContext
+from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 from dotpy.core.utils import render_to_json, render_to_json_err, check_post_json, is_valid_email, get_or_none, send_email
+
+def notify(request):
+  return render_to_response('core/index.html')
 
 def signin(request):
     '''
@@ -100,3 +104,8 @@ def signup(request):
     send_email(email, 'signup', context=dict(confirm_link=confirm_link))
     
     return render_to_json(dict(info=u'请查收邮件。'))
+
+def confirm(request):
+    # TODO
+    return render_to_json()
+
