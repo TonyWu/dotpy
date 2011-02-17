@@ -1,0 +1,10 @@
+
+感谢注册 dotPy.org！
+
+点击以下链接来完成注册:
+
+http://{{ site.domain }}{{ confirm_link }}
+
+
+--
+http://dotpy.org

@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import login, logout
 from dotpy import views
+from dotpy.core import views as core_views
 from dotpy import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -11,13 +12,8 @@ urlpatterns = patterns('',
     # Example:
     # (r'^dotpy/', include('dotpy.foo.urls')),
     (r'^$', views.notify),
+    (r'^user/', include('dotpy.core.urls')),
     (r'^learn/', include('dotpy.lessons.urls')),
-    (r'^rpx$', views.rpx),
-    (r'^logout/$', views.logout),
-    # Testing only: login as a test user
-    (r'^si/$', views.si),
-    (r'^accounts/login/$', login),
-    (r'^accounts/logout/$', logout),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

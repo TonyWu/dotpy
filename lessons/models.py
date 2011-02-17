@@ -3,7 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm, Textarea
-from dotpy.lessons.util import check_lesson_markdown_cache
+from dotpy.lessons.utils import check_lesson_markdown_cache
 
 class Lesson(models.Model):
 	subject = models.CharField(max_length=100, verbose_name=u'标题')

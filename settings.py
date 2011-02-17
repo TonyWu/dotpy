@@ -84,6 +84,8 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates').replace('\\', '/'),
     )
 
+AUTH_PROFILE_MODULE = 'core.UserProfile'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,6 +95,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
+    'dotpy.core',
     'dotpy.lessons',
     )
 
@@ -102,6 +105,6 @@ except ImportError:
     pass
 
 # Settings should be in local_settings:
-# Database configurations
-# DEBUG and TEMPLATE_DEBUG
-# DOTPY_RPX_APIKEY
+#Database configurations
+#DEBUG and TEMPLATE_DEBUG
+#EMAIL_FROM

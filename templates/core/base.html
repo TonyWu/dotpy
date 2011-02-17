@@ -1,0 +1,115 @@
+{% extends 'core/html.html' %}
+{% block extra_head %}
+	<link rel="stylesheet" type="text/css" href="/media/css/all.css"/>
+	{% include 'core/_jquery.html' %}
+{% endblock %}
+{% block html_body %}
+<div id="container"> 
+  <div id="topnav"> 
+    <h1 id="title">dotPy - Just Python</h1> 
+    <div id="nav-main">
+      <ul>
+		<li><a href="/" title="Home Page">首页</a></li>
+		<li><a href="/learn" title="Get Started!">快速入门</a></li>
+		<li><a href="/snippets" title="Code Snippets">代码片段</a></li>
+		<li><a href="/cheat-sheets" title="Cheat Sheets">程序样板</a></li>
+		<li><a href="/community" title="Community Activities">社区活动</a></li>
+	  </ul>
+      <div class="quickref">
+	    {% if user.is_authenticated %}
+	        {{ user.first_name }}，欢迎你！ &nbsp;&nbsp; <a id="signout" href="javascript:">登出</a>
+	        <script type="text/javascript">
+	        	$(function(){
+	        		$('#signout').click(function(){
+		        		$.get('/user/signout/', {}, function(r){
+			        		if(r['err']){alert(r['err']); return;}
+			        		location.reload();
+			        	}, 'json');
+	        		});
+	        	});
+	        </script>
+	    {% else %}
+	      	<span id="signin_links">
+	        	<a id="signin" href="javascript:">登录</a> &nbsp; <a id="signup" href="javascript:">注册</a>
+	        </span>
+	        <form id="signin_form" method="post" action="/user/signin/" style="display: none;">{% csrf_token %}
+	        	<input id="username" type="text" name="username"/> <input id="password" type="password" name="passowrd"/>
+	        	<a id="forgot_passwd" href="javascript:">忘了?</a>
+	        </form>
+	        <form id="signup_form" method="post" action="/user/signup/" style="display: none;">{% csrf_token %}
+	        	<input id="email" type="text" name="email" value="电子邮箱"/>
+	        	<a id="signup_submit" href="javascript:">Okay</a>
+	        </form>
+	        <script type="text/javascript">
+	        	$(function(){
+		        	var _USERNAME = '用户名或邮箱';
+		        	var _PASSWORD = 'xxxxxxxxxx';
+		        	$('#username').val(_USERNAME).css('color', '#aaa');
+		        	$('#password').val(_PASSWORD).css('color', '#aaa');
+		        	$('#signin').click(function(){
+		        		$('#signin_links').hide();
+		        		$('#signin_form').show();
+		        		$('#username').focus().val(_USERNAME).select();
+		        	});
+		        	$('#username, #password').keypress(function(e){
+		        		if(e.charCode == 13){
+			        		var username = $('#username').val();
+			        		var password = $('#password').val();
+			        		if(username) username = $.trim(username);
+			        		if(username==_USERNAME) username = '';
+			        		if(!username){$('#username').val('').focus(); return;}
+			        		if(!password){$('#password').focus();return;}
+				        	$.post('/user/signin/', {username: username, password: password}, function(r){
+				        		if(r['err']){alert(r['err']); return;}
+				        		location.reload();
+				        	}, 'json');
+		        		}
+		        	});
+		        	
+		        	var _defult_text = function(selector, _text){
+			        	$(selector).focus(function(){
+			        		if ($(this).val()==_text){
+			        			$(this).val('').css('color', '#000');
+			        		}
+			        	}).blur(function(){
+			        		if(!$(this).val()){
+			        			$(this).val(_text).css('color', '#aaa');
+			        		}
+			        	});
+			        };
+			        _defult_text('#username', _USERNAME);
+			        _defult_text('#password', _PASSWORD);
+			        
+			        $('#signup').click(function(){
+			        	$('#signin_links').hide();
+		        		$('#signup_form').show();
+		        		$('#email').focus().select();
+			        });
+			        $('#signup_form').submit(function(){
+			        	return false;
+			        });
+			        $('#signup_submit').click(function(){
+			        	var email = $('#email').val();
+			        	if(email) email = $.trim(email);
+			        	if(!email){$('#email').val('').focus(); return;}
+			        	$.post('/user/signup/', {email: email}, function(r){
+			        		if(r['err']){alert(r['err']);}
+			        		else if(r['info']){alert(r['info'])}
+			        		location.reload();
+			        	}, 'json');
+			        });
+	        	});
+	        </script>
+	    {% endif %}
+      </div> 
+    </div> 
+    <a id="logo-box" href="/"></a> 
+  </div> 
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+  <div id="site-info"> 
+    <p>除非特别指明，这些内容使用此许可证：<a rel="license" href="http://creativecommons.org/licenses/by/2.5/cn/">署名 2.5 中国大陆</a></p> 
+  </div>
+</div>
+{% endblock %}

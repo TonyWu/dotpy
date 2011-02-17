@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% block title %}评论 - {{ lesson.subject }} - {{ block.super }}{% endblock %}
 {% block content %}
   <h1><a href="{% url lessons.views.show lesson.slug %}">{{ lesson.subject }}</a> - 评论</h1>
