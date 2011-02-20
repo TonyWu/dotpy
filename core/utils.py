@@ -45,7 +45,27 @@ def send_email(to, kind, **kwargs):
     send_mail(subject, message, settings.EMAIL_FROM, [to])
 
 def generate_code(size):
+    '''
+    Generate a random string, including "size" chars.
+    Result will match regular expression: [a-zA-Z0-9]{size}
+    '''
+    import random
+    
     if size <= 0:
         return ''
     
-    return 'TODO' # TODO
+    # 0~9: +48
+    # 10~35: +55
+    # 36~61: +61
+    result = ''
+    for idx in range(0, size):
+        random_int = random.randint(0, 61)
+        if random_int < 10:
+            _int = random_int + 48
+        elif random_int < 36:
+            _int = random_int + 55
+        else:
+            _int = random_int + 61
+        result = '%s%s' % (result, chr(_int))
+    
+    return result

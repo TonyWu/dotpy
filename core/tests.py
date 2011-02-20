@@ -4,20 +4,36 @@ unittest). These will both pass when you run "manage.py test".
 
 Replace these with more appropriate tests for your application.
 """
+import re
 
 from django.test import TestCase
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+from dotpy.core.utils import *
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
+__test__ = {
+"UtilsTest": """
+>>> generate_code(-1)
+''
+>>> generate_code(0)
+''
+>>> len(generate_code(1))
+1
+>>> code = generate_code(10)
+>>> len(code)
+10
+>>> code.strip() == code
 True
-"""}
+>>> generate_code(10) != code
+True
+>>> pattern = r'[a-zA-Z0-9]{7}'
+>>> bool(re.match(pattern, code))
+True
+>>> results = []
+>>> for i in range(1, 10):
+...     code = generate_code(7)
+...     results.append(bool(re.match(pattern, code)))
+>>> results == [True for i in range(1, 10)]
+True
+""",
+}
 
