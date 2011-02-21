@@ -1,18 +1,12 @@
 from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 from dotpy.lessons.models import Lesson, Comment, LessonForm
 from dotpy.lessons.utils import check_lesson_markdown_cache
-from dotpy.utils import user_context
-
-#
-# Note: Remember to use user_context(request) to
-# show user login status
-#
 
 def home(request):
   lessons = Lesson.objects.all()
-  return render_to_response('lessons/home.html', {'lessons': lessons},
-                            user_context(request))
+  return render_to_response('lessons/home.html', {'lessons': lessons}, RequestContext(request))
 
 def show(request, slug):
   if not slug:
@@ -28,14 +22,14 @@ def show(request, slug):
             {'lesson':lesson, \
              'comments_num': lesson.comment_set.count(), \
              'markdown_template': markdown_template \
-            }, user_context(request))
+            }, RequestContext(request)(request))
 
 def show_comments(request, slug):
   lesson = get_object_or_404(Lesson, slug=slug)
   comments = lesson.comment_set.all()
   return render_to_response('lessons/comment.html',
             {'lesson': lesson, 'comments': comments},
-            user_context(request))
+            RequestContext(request)(request))
 
 @login_required
 def edit(request, slug):
@@ -55,4 +49,4 @@ def edit(request, slug):
       form = LessonForm(instance=lesson)
     else:
       form = LessonForm()
-  return render_to_response('lessons/lesson_form.html', {'form': form}, user_context(request))
+  return render_to_response('lessons/lesson_form.html', {'form': form}, RequestContext(request)(request))

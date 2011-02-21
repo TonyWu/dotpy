@@ -1,6 +1,6 @@
 *.pyc
 local_settings.py
-sqlite
+sqlite.db
 templates/lessons/cache
 Session.vim
 .project
