@@ -2,6 +2,7 @@
 
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 

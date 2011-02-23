@@ -7,7 +7,7 @@ from dotpy.core.utils import generate_code
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     email_verified = models.BooleanField(default=False)
-    confirm_code = models.BooleanField(max_length=10, blank=True)
+    confirm_code = models.CharField(max_length=10, blank=True)
     website = models.URLField(max_length=64, blank=True)
     
     def __unicode__(self):

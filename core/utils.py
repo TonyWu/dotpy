@@ -4,6 +4,8 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.core.validators import email_re
 from django.core.mail import send_mail
+from django.contrib.sites.models import Site
+from django.conf import settings
 from django.template.loader import render_to_string
 
 def render_to_json(data=None):
