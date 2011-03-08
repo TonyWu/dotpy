@@ -12,10 +12,10 @@ def show(request, slug):
   if not slug:
     # show lessons home page
     return render_to_response('lessons/home.html')
-
+  
   # load lesson from database
   lesson = get_object_or_404(Lesson, slug=slug)
-
+  
   # check if the cache file exists for this lesson
   markdown_template = check_lesson_markdown_cache(lesson)
   return render_to_response('lessons/lesson.html', \

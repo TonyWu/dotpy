@@ -1,8 +1,9 @@
 *.pyc
 local_settings.py
-sqlite.db
+dev.db
 templates/lessons/cache
 Session.vim
 .project
 .pydevproject
 .settings
+.DS_Store
