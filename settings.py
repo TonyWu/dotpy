@@ -58,7 +58,7 @@ MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '8g*07=ih$m$r7cmu8n%*hhlx-!lob+s1*^^_n#2l!$-rhv$1za'
+SECRET_KEY = 'change-this'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -110,4 +110,5 @@ except ImportError:
 #Database configurations
 #DEBUG and TEMPLATE_DEBUG
 #EMAIL_FROM
+#SECRET_KEY
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     email_verified = models.BooleanField(default=False)
-    confirm_code = models.CharField(max_length=10, null=True, blank=True)
+    confirm_code = models.CharField(max_length=20, null=True, blank=True)
     website = models.URLField(max_length=64, null=True, blank=True)
     
     def __unicode__(self):
@@ -20,7 +20,7 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance=None, **kwargs):
     if instance and kwargs.get('created', False):
         confirm_code = generate_code(20)
-        while UserProfile.objects.exists(confirm_code=confirm_code):
+        while UserProfile.objects.filter(confirm_code=confirm_code).exists():
             logger.warning('Confirm-code exists in database: %s' % confirm_code)
             confirm_code = generate_code(20)
         profile = UserProfile(user=instance, confirm_code=confirm_code)
