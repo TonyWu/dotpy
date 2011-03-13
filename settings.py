@@ -101,6 +101,11 @@ INSTALLED_APPS = (
     'dotpy.lessons',
 )
 
+# Configure logging
+import logging
+
+logging.basicConfig(filename=os.path.join(PROJECT_ROOT, 'logs/log.txt'), filemode='a', datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s [%(levelname)-5s] %(name)-5s - %(message)s', level=logging.INFO)
+
 try:
     from local_settings import *
 except ImportError:
@@ -109,6 +114,9 @@ except ImportError:
 # Settings should be in local_settings:
 #Database configurations
 #DEBUG and TEMPLATE_DEBUG
-#EMAIL_FROM
 #SECRET_KEY
+#EMAIL_FROM
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#import logging
+#root_logger = logging.getLogger()
+#root_logger.setLevel(logging.DEBUG)
