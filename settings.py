@@ -64,8 +64,8 @@ SECRET_KEY = '8g*07=ih$m$r7cmu8n%*hhlx-!lob+s1*^^_n#2l!$-rhv$1za'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    #     'django.template.loaders.eggs.Loader',
-    )
+    #'django.template.loaders.eggs.Loader',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -73,7 +73,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    )
+)
 
 ROOT_URLCONF = 'dotpy.urls'
 
@@ -82,9 +82,9 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT, 'templates').replace('\\', '/'),
-    )
+)
 
-AUTH_PROFILE_MODULE = 'core.UserProfile'
+AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -94,10 +94,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'django.contrib.admindocs',
 
     'dotpy.core',
+    'dotpy.users',
     'dotpy.lessons',
-    )
+)
 
 try:
     from local_settings import *
@@ -108,3 +110,4 @@ except ImportError:
 #Database configurations
 #DEBUG and TEMPLATE_DEBUG
 #EMAIL_FROM
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

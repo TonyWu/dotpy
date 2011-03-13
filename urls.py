@@ -8,15 +8,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^dotpy/', include('dotpy.foo.urls')),
     (r'^$', views.notify),
-    (r'^user/', include('dotpy.core.urls')),
+    (r'^users/', include('dotpy.users.urls')),
     (r'^learn/', include('dotpy.lessons.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),

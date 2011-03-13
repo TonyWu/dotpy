@@ -1,10 +1,9 @@
 from django.conf.urls.defaults import *
-from dotpy.lessons import views
 
-urlpatterns = patterns('',
-    (r'^$', views.home),
-    (r'^e/$', views.edit, {'slug': None}),
-    (r'^e/(\w+)/$', views.edit),
-    (r'^(\w+)/$', views.show),
-    (r'^(\w+)/comment/$', views.show_comments),
+urlpatterns = patterns('dotpy.lessons.views',
+    url(r'^$', 'home', name='lessons-home'),
+    (r'^e/$', 'edit', {'slug': None}),
+    (r'^e/(\w+)/$', 'edit'),
+    (r'^(\w+)/$', 'show'),
+    (r'^(\w+)/comment/$', 'show_comments'),
 )
